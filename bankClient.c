@@ -54,39 +54,41 @@ int main(int argc, char **argv) {
     }
 	
 	
-	
 	/* @modified mafravi on 05-09 T */
 	/* mySocket was created successfully, so send/receive with it */
-	sBANK_PROTOCOL *bank;
-	
-	//get the transaction type
-	switch ( (char) argv[2][0] ) {
-		case 'B':
-			bank->trans = (unsigned int) 2; //balance inquiry
-			break;
-		case 'W':
-			bank->trans = (unsigned int) 1; //withdrawal
-			break;
-		case 'D':
-			bank->trans = (unsigned int) 0; //deposit
-			break;
+	if ( argc==6 ) {
+		printf("Got good args\n");
+		sBANK_PROTOCOL *toSend;
+		
+		//get the transaction type
+		switch ( (char) argv[2][0] ) {
+			case 'B':
+				toSend->trans = BANK_TRANS_INQUIRY; //balance inquiry
+				break;
+			case 'W':
+				toSend->trans = BANK_TRANS_WITHDRAWAL; //withdrawal
+				break;
+			case 'D':
+				toSend->trans = BANK_TRANS_DEPOSIT; //deposit
+				break;
+		}
+		//get the account number and value
+		toSend->acctnum = (unsigned int) argv[3];
+		toSend->value = (unsigned int) argv[4];
+		
+		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend->trans,toSend->acctnum,toSend->value);
+		
+		//send and receive the data
+		if ( send(mySocket,(void *)toSend,sizeof(toSend),0)<0 )
+			return -1;
+		sBANK_PROTOCOL *received;
+		if ( recv(mySocket,(void *)received,sizeof(toSend),0)<0 )
+			return -1;
+		
+		//received w/out error so parse the return message
+		//(struct sBANK_PROTOCOL *) received;
+		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",received->trans,received->acctnum,received->value);
 	}
-	//get the account number and value
-	bank->acctnum = (unsigned int) argv[3];
-	bank->value = (unsigned int) argv[4];
-	
-	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",bank->trans,bank->acctnum,bank->value);
-	
-	//send and receive the data
-	if ( send(mySocket,(void *)bank,sizeof(*bank),0)<0 )
-		return -1;
-	sBANK_PROTOCOL *received;
-	if ( recv(mySocket,(void *)received,sizeof(*bank),0)<0 )
-		return -1;
-	
-	//received w/out error so parse the return message
-	//(struct sBANK_PROTOCOL *) received;
-	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",received->trans,received->acctnum,received->value);
-	
     close(mySocket);
+	return 0;
 }
