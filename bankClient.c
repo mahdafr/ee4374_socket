@@ -60,14 +60,14 @@ int main(int argc, char **argv) {
 		sBANK_PROTOCOL *toSend;
 		
 		//get the transaction type
-		switch ( (char) argv[3][0] ) {
-			case 'B':
+		switch ( argv[3] ) {
+			case "B":
 				toSend->trans = BANK_TRANS_INQUIRY; //balance inquiry
 				break;
-			case 'W':
+			case "W":
 				toSend->trans = BANK_TRANS_WITHDRAW; //withdrawal
 				break;
-			case 'D':
+			case "D":
 				toSend->trans = BANK_TRANS_DEPOSIT; //deposit
 				break;
 		}
