@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
 				toSend->trans = BANK_TRANS_INQUIRY; //balance inquiry
 				break;
 			case 'W':
-				toSend->trans = BANK_TRANS_WITHDRAWAL; //withdrawal
+				toSend->trans = BANK_TRANS_WITHDRAW; //withdrawal
 				break;
 			case 'D':
 				toSend->trans = BANK_TRANS_DEPOSIT; //deposit
