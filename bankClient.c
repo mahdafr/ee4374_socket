@@ -87,7 +87,7 @@ int main(int argc, char **argv) {
 		
 		sBANK_PROTOCOL toSend = {trans,accnum,value};
 		
-		printf("Transaction: %d\nAccount Number: %d\nAmount: %d\n",trans,acctnum,value);
+		printf("Transaction: %d\nAccount Number: %d\nAmount: %d\n",trans,accnum,value);
 		
 		sBANK_PROTOCOL rec;
 		//send and receive the data
