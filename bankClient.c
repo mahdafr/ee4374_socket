@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
 	/* mySocket was created successfully, so send/receive with it */
 	if ( argc==6 ) {
 		sBANK_PROTOCOL *toSend;
-		
+		/*
 		//get the transaction type
 		switch ( (char) argv[3][0] ) {
 			case 'B':
@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
 			case 'D':
 				toSend->trans = BANK_TRANS_DEPOSIT; //deposit
 				break;
-		}
+		}*/
 		//get the transaction type
 		if ( strcmp(argv[3],"B")==0 )
 			toSend->trans = BANK_TRANS_INQUIRY; //balance inquiry
@@ -84,20 +84,20 @@ int main(int argc, char **argv) {
 		
 		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend->trans,toSend->acctnum,toSend->value);
 		
-		char rec[100];
+		sBANK_PROTOCOL rec;
 		//send and receive the data
 		if ( send(mySocket,(void *)toSend,sizeof(toSend),0)<0 )
 			return -1;
 		printf("sent\n");
-		if ( recv(mySocket,(void *)rec,sizeof(rec),0)<0 )
+		if ( recv(mySocket,(void *)&rec,sizeof(rec),0)<0 )
 			return -1;
 		
 		printf("%s",&rec);
 		
 		//received w/out error so parse the return message
-		sBANK_PROTOCOL *got = (struct sBANK_PROTOCOL *) rec;
-		//printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toGet.trans,toGet.acctnum,toGet.value);
-		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",got->trans,got->acctnum,got->value);
+		//sBANK_PROTOCOL *got = (struct sBANK_PROTOCOL *) rec;
+		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",rec.trans,rec.acctnum,rec.value);
+		//printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",got->trans,got->acctnum,got->value);
 	}
 	
     close(mySocket);
