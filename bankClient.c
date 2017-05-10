@@ -85,6 +85,8 @@ int main(int argc, char **argv) {
 		if ( recv(mySocket,(void *)rec,sizeof(rec),0)<0 )
 			return -1;
 		
+		printf("%c",rec);
+		
 		//received w/out error so parse the return message
 		sBANK_PROTOCOL *got = (struct sBANK_PROTOCOL *) rec;
 		//printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toGet.trans,toGet.acctnum,toGet.value);
