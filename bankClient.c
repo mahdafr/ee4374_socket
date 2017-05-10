@@ -50,12 +50,35 @@ int main(int argc, char **argv) {
     if((mySocket = setupTCPClient(serverIP, portNum)) < 0) {
         return -1;
     }
-
-
-
-
-
-
-
+	
+	
+	
+	/* @modified mafravi on 05-09 T */
+	/* mySocket was created successfully, so send/receive with it */
+	sBANK_PROTOCOL *bank;
+	
+	//get the transaction type
+	switch ( argv[2][0] ) {
+		case 'B':
+			bank->trans = 2; //balance inquiry
+			break;
+		case 'W':
+			bank->trans = 1; //withdrawal
+			break;
+		case 'D':
+			bank->trans = 0; //deposit
+			break;
+	}
+	//get the account number and value
+	bank->acctnum = argv[3];
+	bank->value = argv[4];
+	
+	sBANK_PROTOCOL *received;
+	//send the data
+	if ( send(mySocket,*bank,sizeof(*bank))<0 )
+		return -1;
+	else
+		recv(mySocket,(void *)*received,sizeof(*received),0);
+	
     close(mySocket);
 }
