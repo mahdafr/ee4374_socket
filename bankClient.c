@@ -73,17 +73,17 @@ int main(int argc, char **argv) {
 				break;
 		}
 		//get the account number and value
-		printf("Args: %s %u %u\n",(char) argv[2][0],(unsigned int) argv[3],(unsigned int) argv[4]);
-		toSend->acctnum = (unsigned int) argv[3];
-		toSend->value = (unsigned int) argv[4];
+		printf("Args: %c %u %u\n",argv[2][0],(u_int) argv[3],(u_int) argv[4]);
+		toSend->acctnum = (u_int) argv[3];
+		toSend->value = (u_int) argv[4];
 		
 		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend->trans,toSend->acctnum,toSend->value);
 		
 		//send and receive the data
-		if ( send(mySocket,(void *)toSend,sizeof(toSend),0)<0 )
+		if ( send(mySocket,(void *)toSend,sizeof(*toSend),0)<0 )
 			return -1;
 		sBANK_PROTOCOL *toGet;
-		if ( recv(mySocket,(void *)toGet,sizeof(toSend),0)<0 )
+		if ( recv(mySocket,(void *)toGet,sizeof(*toGet),0)<0 )
 			return -1;
 		
 		//received w/out error so parse the return message
