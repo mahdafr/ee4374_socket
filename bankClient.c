@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
 	bank->acctnum = (unsigned int) argv[3];
 	bank->value = (unsigned int) argv[4];
 	
-	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",&bank->trans,&bank->acctnum,&bank->value);
+	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",bank->trans,bank->acctnum,bank->value);
 	
 	//send and receive the data
 	if ( send(mySocket,(void *)bank,sizeof(*bank),0)<0 )
