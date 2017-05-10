@@ -86,8 +86,11 @@ int main(int argc, char **argv) {
 			return -1;
 		
 		//received w/out error so parse the return message
-		sBANK_PROTOCOL got = (struct sBANK_PROTOCOL) toGet;
-		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",got.trans,got.acctnum,got.value);
+		sBANK_PROTOCOL *got;
+		got->trans = atoi(toGet.trans);
+		got->acctnum = atoi(toGet.acctnum);
+		got->value = atoi(toGet.value);
+		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",got->trans,got->acctnum,got->value);
 	}
 	
     close(mySocket);
