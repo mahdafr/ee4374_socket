@@ -62,20 +62,20 @@ int main(int argc, char **argv) {
 	//get the transaction type
 	switch ( argv[2][0] ) {
 		case 'B':
-			bank->trans = 2; //balance inquiry
+			bank->trans = (unsigned int) 2; //balance inquiry
 			break;
 		case 'W':
-			bank->trans = 1; //withdrawal
+			bank->trans = (unsigned int) 1; //withdrawal
 			break;
 		case 'D':
-			bank->trans = 0; //deposit
+			bank->trans = (unsigned int) 0; //deposit
 			break;
 	}
 	//get the account number and value
 	bank->acctnum = (unsigned int) argv[3];
 	bank->value = (unsigned int) argv[4];
 	
-	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",bank->trans,bank->acctnum,bank->value);
+	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",&bank->trans,&bank->acctnum,&bank->value);
 	
 	//send and receive the data
 	if ( send(mySocket,(void *)bank,sizeof(*bank),0)<0 )
