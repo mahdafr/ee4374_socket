@@ -75,15 +75,15 @@ int main(int argc, char **argv) {
 	bank->acctnum = (unsigned int) argv[3];
 	bank->value = (unsigned int) argv[4];
 	
-	void *received;
-	//send the data
+	sBANK_PROTOCOL *received;
+	//send and receive the data
 	if ( send(mySocket,(void *)bank,sizeof(*bank),0)<0 )
 		return -1;
-	if ( recv(mySocket,received,sizeof(*bank),0)<0 )
+	if ( recv(mySocket,(void *)received,sizeof(*bank),0)<0 )
 		return -1;
 	
 	//received w/out error so parse the return message
-	(struct sBANK_PROTOCOL *) received;
+	//(struct sBANK_PROTOCOL *) received;
 	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",received->trans,received->acctnum,received->value);
 	
     close(mySocket);
