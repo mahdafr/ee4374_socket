@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
 		sBANK_PROTOCOL *toSend;
 		
 		//get the transaction type
-		switch ( (char) argv[2][0] ) {
+		switch ( (char) argv[3][0] ) {
 			case 'B':
 				toSend->trans = BANK_TRANS_INQUIRY; //balance inquiry
 				break;
@@ -73,9 +73,9 @@ int main(int argc, char **argv) {
 				break;
 		}
 		//get the account number and value
-		printf("Args: %c %u %u\n",(char) argv[2][0],(u_int) argv[3],(u_int) argv[4]);
-		toSend->acctnum = (u_int) argv[3];
-		toSend->value = (u_int) argv[4];
+		printf("Args: %c %u %u\n",(char) argv[3][0],(u_int) argv[4],(u_int) argv[5]);
+		toSend->acctnum = (u_int) argv[4];
+		toSend->value = (u_int) argv[5];
 		
 		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend->trans,toSend->acctnum,toSend->value);
 		
