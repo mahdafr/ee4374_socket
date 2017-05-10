@@ -4,7 +4,8 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include "banking.h"
-#include <stdlib.h>
+#include <stdlib.h> //@modified mafravi on 05-09 T
+#include <unistd.h> //@modified mafravi on 05-09 T
 
 int setupTCPClient(char *servIPAddr, unsigned int portNum) {
     int clientSocket;
@@ -80,7 +81,8 @@ int main(int argc, char **argv) {
 		return -1;
 	if ( recv(mySocket,(void *)received,sizeof(*received),0)<0 )
 	
-	printf("got back");
+	(sBANK_PROTOCOL *) received;
+	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",received->trans,received->acctnum,received->value);
 	
     close(mySocket);
 }
