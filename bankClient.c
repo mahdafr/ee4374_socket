@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
 				break;
 		}
 		//get the account number and value
-		printf("Args: %s %u %u\n",argv[2][0],(u_int) argv[3],(u_int) argv[4]);
+		printf("Args: %c %u %u\n",(char) argv[2][0],(u_int) argv[3],(u_int) argv[4]);
 		toSend->acctnum = (u_int) argv[3];
 		toSend->value = (u_int) argv[4];
 		
