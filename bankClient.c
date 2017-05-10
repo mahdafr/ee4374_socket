@@ -57,7 +57,6 @@ int main(int argc, char **argv) {
 	/* @modified mafravi on 05-09 T */
 	/* mySocket was created successfully, so send/receive with it */
 	if ( argc==6 ) {
-		printf("Args: %c %u %u\n",(char) argv[3][0],(unsigned int) argv[4],(unsigned int) argv[5]);
 		sBANK_PROTOCOL *toSend;
 		
 		//get the transaction type
@@ -86,7 +85,7 @@ int main(int argc, char **argv) {
 			return -1;
 		
 		//received w/out error so parse the return message
-		(struct sBANK_PROTOCOL *) toGet;
+		//(struct sBANK_PROTOCOL *) toGet;
 		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toGet->trans,toGet->acctnum,toGet->value);
 	}
 	
