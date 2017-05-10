@@ -77,20 +77,17 @@ int main(int argc, char **argv) {
 		
 		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend->trans,toSend->acctnum,toSend->value);
 		
-		sBANK_PROTOCOL toGet;
+		char toGet[100];
 		//send and receive the data
 		if ( send(mySocket,(void *)toSend,sizeof(toSend),0)<0 )
 			return -1;
 		printf("sent\n");
-		if ( recv(mySocket,(void *)&toGet,sizeof(toGet),0)<0 )
+		if ( recv(mySocket,(void *)toGet,sizeof(toGet),0)<0 )
 			return -1;
 		
 		//received w/out error so parse the return message
-		sBANK_PROTOCOL *got;
-		got->trans = atoi(toGet.trans);
-		got->acctnum = atoi(toGet.acctnum);
-		got->value = atoi(toGet.value);
-		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",got->trans,got->acctnum,got->value);
+		//printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toGet.trans,toGet.acctnum,toGet.value);
+		printf("gucci\n");
 	}
 	
     close(mySocket);
