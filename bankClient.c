@@ -73,8 +73,8 @@ int main(int argc, char **argv) {
 				break;
 		}
 		//get the account number and value
-		toSend->acctnum = (unsigned int) argv[4];
-		toSend->value = (unsigned int) argv[5];
+		toSend->acctnum = atoi(argv[4]);
+		toSend->value = atoi(argv[5]);
 		
 		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend->trans,toSend->acctnum,toSend->value);
 		
