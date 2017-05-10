@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
 	sBANK_PROTOCOL *bank;
 	
 	//get the transaction type
-	switch ( argv[2][0] ) {
+	switch ( (char) argv[2][0] ) {
 		case 'B':
 			bank->trans = (unsigned int) 2; //balance inquiry
 			break;
