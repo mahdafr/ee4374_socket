@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
 	
 	sBANK_PROTOCOL *received;
 	//send the data
-	if ( send(mySocket,*bank,sizeof(*bank))<0 )
+	if ( send(mySocket,(void *)*bank,sizeof(*bank),0)<0 )
 		return -1;
 	else
 		recv(mySocket,(void *)*received,sizeof(*received),0);
