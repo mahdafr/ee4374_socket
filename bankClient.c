@@ -71,15 +71,16 @@ int main(int argc, char **argv) {
 			break;
 	}
 	//get the account number and value
-	bank->acctnum = argv[3];
-	bank->value = argv[4];
+	bank->acctnum = (unsigned int) argv[3];
+	bank->value = (unsigned int) argv[4];
 	
 	sBANK_PROTOCOL *received;
 	//send the data
 	if ( send(mySocket,(void *)*bank,sizeof(*bank),0)<0 )
 		return -1;
-	else
-		recv(mySocket,(void *)*received,sizeof(*received),0);
+	if ( recv(mySocket,(void *)*received,sizeof(*received),0)<0 )
+	
+	printf("got back");
 	
     close(mySocket);
 }
