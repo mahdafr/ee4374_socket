@@ -80,8 +80,10 @@ int main(int argc, char **argv) {
 	if ( send(mySocket,(void *)bank,sizeof(*bank),0)<0 )
 		return -1;
 	if ( recv(mySocket,(void *)received,sizeof(*received),0)<0 )
+		return -1;
 	
-	//(sBANK_PROTOCOL *) received;
+	//received w/out error so parse the return message
+	(struct sBANK_PROTOCOL *) received;
 	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",received->trans,received->acctnum,received->value);
 	
     close(mySocket);
