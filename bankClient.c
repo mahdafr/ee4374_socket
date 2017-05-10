@@ -81,6 +81,7 @@ int main(int argc, char **argv) {
 		//send and receive the data
 		if ( send(mySocket,(void *)toSend,sizeof(*toSend),0)<0 )
 			return -1;
+		printf("sent");
 		if ( recv(mySocket,(void *)toGet,sizeof(*toSend),0)<0 )
 			return -1;
 		
