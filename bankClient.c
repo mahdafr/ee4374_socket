@@ -81,7 +81,7 @@ int main(int argc, char **argv) {
 		//send and receive the data
 		if ( send(mySocket,(void *)toSend,sizeof(toSend),0)<0 )
 			return -1;
-		if ( recv(mySocket,(void *)toGet,sizeof(toGet),0)<0 )
+		if ( recv(mySocket,(void *)toGet,sizeof(toSend),0)<0 )
 			return -1;
 		
 		//received w/out error so parse the return message
