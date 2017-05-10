@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
 			return -1;
 		
 		//received w/out error so parse the return message
-		sBANK_PROTOCOL *got = (struct sBANK_PROTOCOL *) toGet
+		sBANK_PROTOCOL *got = (struct sBANK_PROTOCOL *) toGet;
 		//printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toGet.trans,toGet.acctnum,toGet.value);
 	}
 	
