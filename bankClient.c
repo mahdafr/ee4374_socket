@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
 		printf("sent\n");
 		if ( recv(mySocket,(void *)&rec,sizeof(rec),0)<0 )
 			return -1;
-		printf("%u\n\n",rec.trans);
+		printf("%s\n\n",itoa(rec.trans));
 		
 		//received w/out error so parse the return message
 		//sBANK_PROTOCOL *got = (struct sBANK_PROTOCOL *) rec;
