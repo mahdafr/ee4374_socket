@@ -4,7 +4,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include "banking.h"
-#include <ctype.h>
+#include <stdlib.h>
 
 int setupTCPClient(char *servIPAddr, unsigned int portNum) {
     int clientSocket;
