@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
 		toSend->acctnum = (unsigned int) argv[3];
 		toSend->value = (unsigned int) argv[4];
 		
-		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend->trans,toSend->acctnum,toSend->value);
+		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend.trans,toSend.acctnum,toSend.value);
 		
 		//send and receive the data
 		if ( send(mySocket,(void *)toSend,sizeof(toSend),0)<0 )
