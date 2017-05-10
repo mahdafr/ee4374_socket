@@ -81,7 +81,7 @@ int main(int argc, char **argv) {
 		return -1;
 	if ( recv(mySocket,(void *)received,sizeof(*received),0)<0 )
 	
-	(sBANK_PROTOCOL *) received;
+	//(sBANK_PROTOCOL *) received;
 	printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",received->trans,received->acctnum,received->value);
 	
     close(mySocket);
