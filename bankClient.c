@@ -72,31 +72,38 @@ int main(int argc, char **argv) {
 				break;
 		}*/
 		//get the transaction type
-		if ( strcmp(argv[3],"I")==0 )
+		if ( strcmp(argv[3],"I")==0 ){
 			toSend->trans = BANK_TRANS_INQUIRY; //balance inquiry
-		else if ( strcmp(argv[3],"W")==0 )
+		}
+		else if ( strcmp(argv[3],"W")==0 ){
 			toSend->trans = BANK_TRANS_WITHDRAW; //withdrawal
-		else if ( strcmp(argv[3],"D")==0 )
+		}
+		else if ( strcmp(argv[3],"D")==0 ){
 			toSend->trans = BANK_TRANS_DEPOSIT; //deposit
+		}
 		//get the account number and value
 		toSend->acctnum = atoi(argv[4]);
 		toSend->value = atoi(argv[5]);
 		
-		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend->trans,toSend->acctnum,toSend->value);
+		printf("Transaction: %d\nAccount Number: %d\nAmount: %d\n",toSend->trans,toSend->acctnum,toSend->value);
 		
 		sBANK_PROTOCOL rec;
 		//send and receive the data
-		if ( send(mySocket,(void *)toSend,sizeof(toSend),0)<0 )
+		if ( send(mySocket,(void *)toSend,sizeof(toSend),0)<0 ){
+			puts("not sent");
 			return -1;
-		printf("sent\n");
-		if ( recv(mySocket,(void *)&rec,sizeof(rec),0)<0 )
+		} else printf("sent\n");
+		
+		if ( recv(mySocket,(void *)&rec,sizeof(rec),0)<0 ){
+			puts("not received");
 			return -1;
+		} else puts("received"); 
 		//char s[15];
 		//sprintf(s,"%d\n\n",rec);
 		
 		//received w/out error so parse the return message
 		//sBANK_PROTOCOL *got = (struct sBANK_PROTOCOL *) rec;
-		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",rec.trans,rec.acctnum,rec.value);
+		printf("Transaction: %d\nAccount Number: %d\nAmount: %d\n",rec.trans,rec.acctnum,rec.value);
 		//printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",got->trans,got->acctnum,got->value);
 	}
 	
