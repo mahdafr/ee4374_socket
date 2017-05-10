@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
 				break;
 		}*/
 		//get the transaction type
-		if ( strcmp(argv[3],"B")==0 )
+		if ( strcmp(argv[3],"I")==0 )
 			toSend->trans = BANK_TRANS_INQUIRY; //balance inquiry
 		else if ( strcmp(argv[3],"W")==0 )
 			toSend->trans = BANK_TRANS_WITHDRAW; //withdrawal
@@ -91,8 +91,8 @@ int main(int argc, char **argv) {
 		printf("sent\n");
 		if ( recv(mySocket,(void *)&rec,sizeof(rec),0)<0 )
 			return -1;
-		char s[15];
-		sprintf(s,"%d\n\n",rec.trans);
+		//char s[15];
+		//sprintf(s,"%d\n\n",rec);
 		
 		//received w/out error so parse the return message
 		//sBANK_PROTOCOL *got = (struct sBANK_PROTOCOL *) rec;
