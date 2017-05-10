@@ -77,10 +77,10 @@ int main(int argc, char **argv) {
 		
 		printf("Transaction: %u\nAccount Number: %u\nAmount: %u\n",toSend->trans,toSend->acctnum,toSend->value);
 		
+		sBANK_PROTOCOL *toGet;
 		//send and receive the data
 		if ( send(mySocket,(void *)toSend,sizeof(*toSend),0)<0 )
 			return -1;
-		sBANK_PROTOCOL *toGet;
 		if ( recv(mySocket,(void *)toGet,sizeof(*toGet),0)<0 )
 			return -1;
 		
